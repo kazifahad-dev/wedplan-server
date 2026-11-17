@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { verifyToken, requireRole } from "./middleware/auth.js";
 
 const app = express();
 
@@ -15,6 +16,13 @@ app.get("/", (_req, res) => {
   res.json({ message: "WedPlan server is running" });
 });
 
+app.get("/api/me", verifyToken, (req, res) => {
+  res.json({ user: req.user });
+});
+
+app.get("/api/admin-test", verifyToken, requireRole("admin"), (_req, res) => {
+  res.json({ message: "Welcome admin" });
+});
 
 app.use((_req, res) => {
   res.status(404).json({ message: "Route not found" });
