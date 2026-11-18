@@ -3,16 +3,14 @@ import { createRemoteJWKSet, jwtVerify } from "jose";
 import { ObjectId } from "mongodb";
 import { getDB } from "../config/db.js";
 
-
 const JWKS = createRemoteJWKSet(
-  new URL(`${process.env.BETTER_AUTH_URL}/api/auth/jwks`)
+  new URL(`${process.env.BETTER_AUTH_URL}/api/auth/jwks`),
 );
-
 
 export async function verifyToken(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const header = req.headers.authorization;
@@ -22,15 +20,15 @@ export async function verifyToken(
 
     const token = header.split(" ")[1];
 
-    
-    const { payload } = await jwtVerify(token, JWKS);
+    const { payload } = await jwtVerify(token, JWKS, {
+      issuer: process.env.BETTER_AUTH_URL,
+    });
 
     const userId = payload.sub;
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized: invalid token" });
     }
 
-    
     const user = await getDB()
       .collection("user")
       .findOne({ _id: new ObjectId(userId) });
@@ -57,7 +55,6 @@ export async function verifyToken(
       .json({ message: "Unauthorized: invalid or expired token" });
   }
 }
-
 
 export function requireRole(...roles: Array<"admin" | "vendor" | "customer">) {
   return (req: Request, res: Response, next: NextFunction) => {
