@@ -4,6 +4,7 @@ import { verifyToken, requireRole } from "./middleware/auth.js";
 import serviceRoutes from "./routes/service.routes.js";
 import publicServiceRoutes from "./routes/publicService.routes.js";
 import bookingRoutes from "./routes/booking.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.get("/api/admin-test", verifyToken, requireRole("admin"), (_req, res) => {
 app.use("/api/services", publicServiceRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/bookings", bookingRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use((_req, res) => {
   res.status(404).json({ message: "Route not found" });
