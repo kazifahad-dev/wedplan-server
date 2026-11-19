@@ -4,6 +4,7 @@
   "description": "WedPlan wedding planning platform - backend",
   "type": "module",
   "scripts": {
+    "seed": "tsx src/scripts/seedServices.ts",
     "make-admin": "tsx src/scripts/makeAdmin.ts",
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
