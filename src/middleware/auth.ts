@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import { ObjectId } from "mongodb";
 import { getDB } from "../config/db.js";
-import "../types/express.js";
+import type {} from "../types/express.js";
 
 const JWKS = createRemoteJWKSet(
   new URL(`${process.env.BETTER_AUTH_URL}/api/auth/jwks`),
