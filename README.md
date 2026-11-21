@@ -8,8 +8,8 @@ This repository is the **server** (Express.js + MongoDB). The Next.js client liv
 
 | | Link |
 |---|---|
-| Live Website | `https://wedplan-client-puce.vercel.app/` |
-| Live API | `https://wedplan-server-tau.vercel.app/` |
+| Live Website | `https://wedplan-client-puce.vercel.app` |
+| Live API | `https://wedplan-server-tau.vercel.app` |
 | Client Repository | https://github.com/kazifahad-dev/wedplan-client |
 | Server Repository | https://github.com/kazifahad-dev/wedplan-server |
 
