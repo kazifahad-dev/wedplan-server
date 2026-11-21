@@ -8,6 +8,7 @@ import adminRoutes from "./routes/admin.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import { handleWebhook } from "./controllers/payment.controller.js";
 import { connectDB } from "./config/db.js";
+// import { connectDB } from "./config/db.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(
     credentials: true,
   }),
 );
+
 
 app.use(async (_req, _res, next) => {
   try {
