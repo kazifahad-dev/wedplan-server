@@ -8,8 +8,8 @@ This repository is the **server** (Express.js + MongoDB). The Next.js client liv
 
 | | Link |
 |---|---|
-| Live Website | `https://wedplan-client-puce.vercel.app` |
-| Live API | `https://wedplan-server-tau.vercel.app` |
+| Live Website | [https://wedplan-client-puce.vercel.app](https://wedplan-client-puce.vercel.app) |
+| Live API | [https://wedplan-server-tau.vercel.app](https://wedplan-server-tau.vercel.app) |
 | Client Repository | https://github.com/kazifahad-dev/wedplan-client |
 | Server Repository | https://github.com/kazifahad-dev/wedplan-server |
 
@@ -183,7 +183,7 @@ All secrets are read from environment variables. `.env` is listed in `.gitignore
 |---|---|
 | Local client | `http://localhost:3000` |
 | Local server | `http://localhost:5000` |
-| Stripe webhook endpoint (production) | `https://YOUR-SERVER-URL.vercel.app/api/payments/webhook` |
+| Stripe webhook endpoint (production) | `https://wedplan-server-tau.vercel.app/api/payments/webhook` |
 | Stripe webhook events to enable | `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted` |
 
 ## Deployment Notes (Vercel)
