@@ -18,25 +18,32 @@ const VENDOR_LOOKUP = [
     $addFields: { vendorObjectId: { $toObjectId: "$vendorId" } },
   },
   {
+   
     $lookup: {
       from: "user",
       localField: "vendorObjectId",
       foreignField: "_id",
+      pipeline: [
+        {
+          $project: {
+            _id: 0,
+            name: 1,
+            businessName: 1,
+            image: 1,
+            subscriptionPlan: 1,
+          },
+        },
+      ],
       as: "vendor",
     },
   },
   { $unwind: { path: "$vendor", preserveNullAndEmptyArrays: true } },
   {
     $addFields: {
-      vendor: {
-        name: "$vendor.name",
-        businessName: "$vendor.businessName",
-        image: "$vendor.image",
-        isPremium: { $eq: ["$vendor.subscriptionPlan", "premium"] },
-      },
+      "vendor.isPremium": { $eq: ["$vendor.subscriptionPlan", "premium"] },
     },
   },
-  { $project: { vendorObjectId: 0 } },
+  { $project: { vendorObjectId: 0, "vendor.subscriptionPlan": 0 } },
 ];
 
 
